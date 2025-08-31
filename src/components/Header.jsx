@@ -4,7 +4,7 @@ import { FaPhoneAlt, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-scroll";
 import logo from "../assets/images/logo.png";
 import { useDarkMode } from "../components/DarkModeContext";
-
+import { useSelector } from 'react-redux';
 function Header() {
   const { darkMode, toggleDarkMode } = useDarkMode();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -61,7 +61,7 @@ function Header() {
       }
     }, 100);
   };
-
+    const totalQuantity = items.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <>
       <nav
@@ -98,8 +98,11 @@ function Header() {
             {/* Contact Info */}
             <div className="hidden md:flex items-center space-x-4 cursor-pointer">
               <div className="flex items-center space-x-2">
-                <FaPhoneAlt className="text-[#F9AD3A] dark:text-[#034FC3]" />
-                <span className="text-sm font-medium">888-908-9102</span>
+                     {/* Enhanced Badge with Animation */}
+                            <span className="absolute -top-2 -right-2 transform bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 text-white font-bold text-xs rounded-full w-6 h-6 flex items-center justify-center shadow-lg animate-bounce border-2 border-white/30">
+                                {totalQuantity}
+                            </span>
+                
               </div>
               <FaUserCircle className="text-2xl text-[#F9AD3A] dark:text-[#034FC3]" />
             </div>
